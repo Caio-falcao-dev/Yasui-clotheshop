@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="script.js"></script>
+<title>Yasui — Brechó Online</title>
+
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Yasui</h1>
+
+<nav>
+<a href="#">Início</a>
+<a href="#">Categorias</a>
+<a href="#" onclick="verificarVendedor()">Vender</a>
+<a href="#">Sobre</a>
+</nav>
+
+<!-- DIREITA (BUSCA + ÍCONES) -->
+<div class="header-direita">
+
+    <div class="barra-pesquisa">
+        <input type="text" placeholder="Buscar roupas, vintage, street..." />
+        <button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+
+    <div class="icones-header">
+        <a href="auth.html" title="Login / Cadastro">
+            <i class="fa-solid fa-user"></i>
+        </a>
+
+        <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<h2>Encontre peças únicas</h2>
+<p>Explore roupas selecionadas ou venda aquilo que não usa mais.</p>
+
+<div class="hero-botoes">
+
+<button class="btn-explorar" onclick="explorar()">
+<i class="fa-solid fa-shirt"></i> Explorar peças
+</button>
+
+<button class="btn-vender" onclick="verificarVendedor()">
+<i class="fa-solid fa-tag"></i> Vender roupas
+</button>
+
+</div>
+
+</section>
+
+
+<section class="categorias">
+
+<h2>Categorias</h2>
+
+<div class="grid-categorias">
+
+<div class="categoria"><div class="icone"><i class="fa-solid fa-shirt"></i></div><p>Casual</p></div>
+<div class="categoria"><div class="icone"><i class="fa-solid fa-user-tie"></i></div><p>Formal</p></div>
+<div class="categoria"><div class="icone"><i class="fa-solid fa-hat-cowboy"></i></div><p>Vintage</p></div>
+<div class="categoria"><div class="icone"><i class="fa-solid fa-fire"></i></div><p>Street</p></div>
+<div class="categoria"><div class="icone"><i class="fa-solid fa-recycle"></i></div><p>Usadas</p></div>
+
+</div>
+
+</section>
+
+
+<section class="produtos">
+
+<h2>Peças recentes</h2>
+
+<div class="grid-produtos">
+
+<div class="produto" onclick="comprar()">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+<h3>Camiseta branca</h3>
+<p class="preco">R$30</p>
+</div>
+
+<div class="produto" onclick="comprar()">
+<img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7">
+<h3>Conjunto social</h3>
+<p class="preco">R$75</p>
+</div>
+
+<div class="produto" onclick="comprar()">
+<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b">
+<h3>Camisa verde</h3>
+<p class="preco">R$90</p>
+</div>
+
+<div class="produto" onclick="comprar()">
+<img src="https://images.unsplash.com/photo-1542060748-10c28b62716f">
+<h3>Camisas diversas</h3>
+<p class="preco">R$40</p>
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+<p>Yasui © 2026</p>
+</footer>
+
+
+<script>
+
+// ==========================
+// SIMULAÇÃO DE LOGIN
+// ==========================
+
+// Estrutura esperada:
+// localStorage.setItem("usuario", JSON.stringify({
+//     tipo: "cliente" ou "vendedor"
+// }));
+
+function usuarioLogado() {
+    return JSON.parse(localStorage.getItem("usuario"));
+}
+
+// ==========================
+// AÇÕES
+// ==========================
+
+function comprar() {
+    const user = usuarioLogado();
+
+    if (!user) {
+        window.location.href = "auth.html";
+    } else {
+        alert("Compra iniciada!");
+    }
+}
+
+function verificarVendedor() {
+    const user = usuarioLogado();
+
+    if (!user) {
+        window.location.href = "auth.html";
+    } 
+    else if (user.tipo === "cliente") {
+        const resposta = confirm("Você é cliente. Deseja se tornar vendedor?");
+        
+        if (resposta) {
+            virarVendedor();
+        }
+    } 
+    else {
+        alert("Área de vendedor");
+    }
+}
+
+function explorar() {
+    window.scrollTo({ top: 600, behavior: "smooth" });
+}
+
+</script>
+
+</body>
+</html>
