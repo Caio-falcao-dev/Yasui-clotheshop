@@ -1,6 +1,4 @@
 
-# Yasui-clotheshop
-
 ## Yasui Clotheshop — Banco de Dados
 
 ### Tema
